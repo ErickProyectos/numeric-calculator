@@ -47,7 +47,7 @@ function resolverEcuacion() {
             exponete = parseInt(arregloInt[i][1])
             terminoD = termino * exponete
             expontentD = exponete - 1
-            if (expontentD == 1) {
+            if (expontentD <= 1) {
                 console.log("sub 1 El resultado es  " + terminoD + "x")
                 resultado += terminoD + "x"
             }
