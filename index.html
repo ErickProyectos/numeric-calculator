@@ -8,70 +8,88 @@
     <title>Derivar</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <script src="js/math.js"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="https://polyfill.io/v3/po  lyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
 
 </head>
 
 <body style="background-color: F5F5F5;">
 
-    <div class="row d-flex justify-content-center">
+<div class="row d-flex justify-content-center">
 
 
-        <div class="col-md-6">
+    <div class="col-md-6">
 
-            <div class="shadow p-3 mb-5 bg-body rounded my-5">
-                <div class="card-body">
-                    <form>
-                        <h1 class="h1 my-1 text-center">Calculadora de derivadas</h1>
-                        <div class=" justify-content-start ">
-                            <input type="text" class=" my-4  form-control form-control-lg " id="derivada_entrada"
-                                placeholder="Introduce la derivada aquí" autocomplete="off">
-                            <h3 class="h4 ">Esto será calculado:</h3>
-                            <div id="derivada_salida" class=" border border-lightrounded"
-                                style="width: auto; height: 50px; text-align: center; "></div>
-                            <button type="button" class=" btn btn-primary my-3 text-center "
-                                onclick="resolverEcuacion()">Calcular</button>
-                            <ul class="list-group">
-                                <li class="list-group-item" id="derivada-resultado" name="derivada-resultado"></li>
+        <div class="shadow p-3 mb-5 bg-body rounded my-5">
+            <div class="card-body">
+                <h1 class="h1">Derivación númerica</h1>
+                <h1 class="h1 my-1 text-center"></h1>
+                <div class=" justify-content-start ">
+                    <input type="text" class=" my-4  form-control form-control-lg " id="derivate-h"
+                           placeholder="Introduce el valor de h" autocomplete="off">
+                    <input type="text" class=" my-4  form-control form-control-lg " id="derivate-x"
+                           placeholder="Introduce la derivada x" autocomplete="off">
+                    <input type="text" class=" my-4  form-control form-control-lg " id="function-x"
+                           placeholder="Introduce la función aquí" autocomplete="off">
+                    <div class="fw-bolder text-xl-center" id="result-derivate"></div>
+                    <button type="button" class=" btn btn-primary my-3 text-center "
+                            onclick="calculateResult()">Calcular
+                    </button>
 
-
-                            </ul>
-                        </div>
-                    </form>
                 </div>
+
             </div>
-
         </div>
-
 
     </div>
 
-    <!-- <ul class="list-group">
-        <li class="list-group-item">Derivada
 
-        </li>
-        <li class="list-group-item">Derivada</li>
-        <li class="list-group-item">Derivada</li>
+</div>
 
-    </ul> -->
+<!-- <ul class="list-group">
+    <li class="list-group-item">Derivada
 
-    <!-- 
-    <div class="row d-flex justify-content-center">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Resultado</h5>
-            </div>
-            <div class="card-body">
-             
-            </div>
+    </li>
+    <li class="list-group-item">Derivada</li>
+    <li class="list-group-item">Derivada</li>
+
+</ul> -->
+
+<!--
+<div class="row d-flex justify-content-center">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Resultado</h5>
         </div>
+        <div class="card-body">
 
-    </div> -->
+        </div>
+    </div>
+
+</div> -->
 
 
 </body>
 <script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="js/index.js"></script>
+<!--<script src="js/index.js"></script>-->
+<script>
 
+    function calculateResult() {
+        const {value} = document.getElementById('function-x');
+        // const {value: x} = document.getElementById('derivate-x');
+        console.log(value);
+
+        const parsedFunctionX = math.parse(value);
+        const simplifiedFunctionX = math.simplify(parsedFunctionX);
+        // const parsedX = math.parse(x);
+        const derivation = math.derivative(simplifiedFunctionX, 'x')
+        // const solvedDerivation = derivation.evaluate({x});
+        console.log(derivation.toString())
+
+        const result = document.getElementById('result-derivate');
+        result.textContent = "Derivada: " + derivation.toString();
+    }
+
+</script>
 </html>
